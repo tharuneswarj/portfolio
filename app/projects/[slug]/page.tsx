@@ -1,51 +1,68 @@
 import { notFound } from "next/navigation"
-import { getProjectBySlug, getAllProjects } from "../utils"
-import { CustomMDX } from "../../components/mdx"
+import { CustomMDX } from "app/components/mdx"
+import { getAllProjects, getProjectBySlug } from "../utils"
+import { baseUrl } from "app/sitemap"
+import type { Metadata } from "next"
 
-type Props = { params: { slug: string } }
-
+// ✅ Generate static params
 export async function generateStaticParams() {
-  return getAllProjects().map((project) => ({
-    slug: project.slug,
-  }))
+  const projects = getAllProjects()
+  return projects.map((p) => ({ slug: p.slug }))
 }
 
-export default function ProjectPage({ params }: Props) {
+// ✅ Metadata
+export async function generateMetadata({ params }: any): Promise<Metadata> {
+  const project = getProjectBySlug(params.slug)
+  if (!project) return {}
+
+  const { title, description, image, publishedAt } = project.metadata
+
+  const ogImage = image
+    ? `${baseUrl}${image}`
+    : `${baseUrl}/og?title=${encodeURIComponent(title)}`
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: "article",
+      publishedTime: publishedAt,
+      url: `${baseUrl}/projects/${project.slug}`,
+      images: [{ url: ogImage }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogImage],
+    },
+  }
+}
+
+// ✅ Project detail page
+export default function ProjectPage({ params }: any) {
   const project = getProjectBySlug(params.slug)
 
   if (!project) return notFound()
 
   return (
-    <article className="max-w-3xl mx-auto px-6 py-12">
-      <h1 className="text-4xl md:text-5xl font-bold mb-4">
+    <section className="max-w-4xl mx-auto px-6 py-12">
+      {/* Title */}
+      <h1 className="text-4xl font-bold tracking-tight mb-4">
         {project.metadata.title}
       </h1>
-      <p className="text-lg text-neutral-600 dark:text-neutral-400 mb-8">
-        {project.metadata.description}
+
+      {/* Meta */}
+      <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-8">
+        {project.metadata.publishedAt}
       </p>
 
-      <div className="prose dark:prose-invert max-w-none">
+      {/* Content */}
+      <article className="prose dark:prose-invert max-w-none">
         <CustomMDX source={project.content} />
-      </div>
-    </article>
+      </article>
+    </section>
   )
-}
-
-import type { Metadata } from "next"
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const project = getProjectBySlug(params.slug)
-
-  if (!project) return { title: "Not Found" }
-
-  return {
-    title: `${project.metadata.title} | Tharun Eswar`,
-    description: project.metadata.description,
-    openGraph: {
-      title: project.metadata.title,
-      description: project.metadata.description,
-      images: [project.metadata.image],
-      type: "article",
-    },
-  }
 }
