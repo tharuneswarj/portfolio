@@ -1,61 +1,58 @@
-function ArrowIcon() {
-  return (
-    <svg
-      width="12"
-      height="12"
-      viewBox="0 0 12 12"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M2.07102 11.3494L0.963068 10.2415L9.2017 1.98864H2.83807L2.85227 0.454545H11.8438V9.46023H10.2955L10.3097 3.09659L2.07102 11.3494Z"
-        fill="currentColor"
-      />
-    </svg>
-  )
-}
+import { Github, Linkedin, Instagram, Mail } from "lucide-react"
 
 export default function Footer() {
   return (
-    <footer className="mb-16">
-      <ul className="font-sm mt-8 flex flex-col space-x-0 space-y-2 text-neutral-600 md:flex-row md:space-x-4 md:space-y-0 dark:text-neutral-300">
-        <li>
+    <footer className="mt-16 border-t border-neutral-200 dark:border-neutral-800 pt-8">
+      <div className="flex flex-col items-center space-y-6 md:flex-row md:justify-between md:space-y-0">
+        {/* Left side: Branding */}
+        <div className="text-center md:text-left">
+          <h3 className="text-lg font-semibold">Tharun Eswar</h3>
+          <p className="text-sm text-neutral-600 dark:text-neutral-400">
+            Architect • Computational Designer • Maker
+          </p>
+        </div>
+
+        {/* Right side: Social links */}
+        <div className="flex space-x-6">
           <a
-            className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
-            rel="noopener noreferrer"
+            href="mailto:tharuneswar@gmail.com"
             target="_blank"
-            href="/rss"
+            rel="noopener noreferrer"
+            className="transition-colors hover:text-black dark:hover:text-white"
           >
-            <ArrowIcon />
-            <p className="ml-2 h-7">rss</p>
+            <Mail className="h-5 w-5" />
           </a>
-        </li>
-        <li>
           <a
-            className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
-            rel="noopener noreferrer"
+            href="https://github.com/tharuneswarj"
             target="_blank"
-            href="https://github.com/vercel/next.js"
+            rel="noopener noreferrer"
+            className="transition-colors hover:text-black dark:hover:text-white"
           >
-            <ArrowIcon />
-            <p className="ml-2 h-7">github</p>
+            <Github className="h-5 w-5" />
           </a>
-        </li>
-        <li>
           <a
-            className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
-            rel="noopener noreferrer"
+            href="https://www.linkedin.com/in/tharun-eswar/"
             target="_blank"
-            href="https://vercel.com/templates/next.js/portfolio-starter-kit"
+            rel="noopener noreferrer"
+            className="transition-colors hover:text-black dark:hover:text-white"
           >
-            <ArrowIcon />
-            <p className="ml-2 h-7">view source</p>
+            <Linkedin className="h-5 w-5" />
           </a>
-        </li>
-      </ul>
-      <p className="mt-8 text-neutral-600 dark:text-neutral-300">
-        © {new Date().getFullYear()} MIT Licensed
-      </p>
+          <a
+            href="https://instagram.com/tharun.j"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-colors hover:text-black dark:hover:text-white"
+          >
+            <Instagram className="h-5 w-5" />
+          </a>
+        </div>
+      </div>
+
+      {/* Bottom copyright */}
+      <div className="mt-8 text-center text-sm text-neutral-600 dark:text-neutral-400">
+        © {new Date().getFullYear()} Tharun Eswar. All rights reserved.
+      </div>
     </footer>
   )
 }

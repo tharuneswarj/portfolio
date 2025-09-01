@@ -50,12 +50,16 @@ function getMDXData(dir) {
 }
 
 export function getBlogPosts() {
-  return getMDXData(path.join(process.cwd(), 'app', 'blog', 'posts'))
+  return getMDXData(path.join(process.cwd(), 'content', 'blog'))
 }
 
 export function formatDate(date: string, includeRelative = false) {
   let currentDate = new Date()
-  if (!date.includes('T')) {
+  if (!date || typeof date !== "string") {
+    return "Unknown date"
+  }
+  
+  if (!date.includes("T")) {
     date = `${date}T00:00:00`
   }
   let targetDate = new Date(date)
