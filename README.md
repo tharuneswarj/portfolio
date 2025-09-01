@@ -59,7 +59,7 @@ Vercel
 
 ### 📬 Contact
 
-🌐 Portfolio: tharuneswarj.vercel.app
+🌐 Portfolio: https:\\tha.run
 
 💼 LinkedIn: linkedin.com/in/tharun-eswar
 
