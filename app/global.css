@@ -1,4 +1,11 @@
-@import 'tailwindcss';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+::selection {
+  background-color: #f97316; /* your highlight color */
+  color: white;
+}
 
 ::selection {
   background-color: #47a3f3;
