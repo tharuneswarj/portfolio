@@ -2,22 +2,26 @@ import { notFound } from "next/navigation"
 import { CustomMDX } from "app/components/mdx"
 import { formatDate, getBlogPosts } from "../utils"
 import { baseUrl } from "app/sitemap"
-import type { Metadata } from "next"
+import type { Metadata, ResolvingMetadata } from "next"
 
-// ✅ Generate static paths for all blog posts
-export async function generateStaticParams(): Promise<{ slug: string }[]> {
-  const posts = getBlogPosts()
-  return posts.map((post) => ({ slug: post.slug }))
+type PageProps = {
+  params: {
+    slug: string
+  }
 }
 
-// ✅ Dynamic metadata for SEO / social previews
-export function generateMetadata({
-  params,
-}: {
-  params: { slug: string }
-}): Metadata | undefined {
-  const post = getBlogPosts().find((post) => post.slug === params.slug)
-  if (!post) return
+// ✅ Generate static paths
+export async function generateStaticParams(): Promise<PageProps["params"][]> {
+  return getBlogPosts().map((post) => ({ slug: post.slug }))
+}
+
+// ✅ Metadata
+export async function generateMetadata(
+  { params }: PageProps,
+  _parent: ResolvingMetadata
+): Promise<Metadata> {
+  const post = getBlogPosts().find((p) => p.slug === params.slug)
+  if (!post) return {}
 
   const { title, publishedAt: publishedTime, summary: description, image } =
     post.metadata
@@ -46,53 +50,20 @@ export function generateMetadata({
   }
 }
 
-// ✅ Blog detail page
-export default function BlogPage({
-  params,
-}: {
-  params: { slug: string }
-}) {
-  const post = getBlogPosts().find((post) => post.slug === params.slug)
+// ✅ Page component
+export default function BlogPage({ params }: PageProps) {
+  const post = getBlogPosts().find((p) => p.slug === params.slug)
 
   if (!post) return notFound()
 
   return (
     <section className="max-w-3xl mx-auto px-6 py-12">
-      {/* SEO Schema */}
-      <script
-        type="application/ld+json"
-        suppressHydrationWarning
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BlogPosting",
-            headline: post.metadata.title,
-            datePublished: post.metadata.publishedAt,
-            dateModified: post.metadata.publishedAt,
-            description: post.metadata.summary,
-            image: post.metadata.image
-              ? `${baseUrl}${post.metadata.image}`
-              : `/og?title=${encodeURIComponent(post.metadata.title)}`,
-            url: `${baseUrl}/blog/${post.slug}`,
-            author: {
-              "@type": "Person",
-              name: "Tharun Eswar",
-            },
-          }),
-        }}
-      />
-
-      {/* Blog title */}
       <h1 className="text-4xl font-bold tracking-tight mb-4">
         {post.metadata.title}
       </h1>
-
-      {/* Blog meta */}
-      <div className="flex justify-between items-center text-sm text-neutral-600 dark:text-neutral-400 mb-8">
-        <p>{formatDate(post.metadata.publishedAt)}</p>
-      </div>
-
-      {/* Blog content */}
+      <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-8">
+        {formatDate(post.metadata.publishedAt)}
+      </p>
       <article className="prose dark:prose-invert max-w-none">
         <CustomMDX source={post.content} />
       </article>
