@@ -3,13 +3,26 @@ import fs from "fs"
 import path from "path"
 import matter from "gray-matter"
 
+// ✅ Strong type for blog frontmatter
+export type BlogMetadata = {
+  title: string
+  publishedAt: string
+  summary: string
+  image?: string
+  tags?: string[]   // 👈 new, optional
+}
+
 const BLOG_PATH = path.join(process.cwd(), "content/blog")
 
 export function getBlogSlugs() {
   return fs.readdirSync(BLOG_PATH).filter((file) => file.endsWith(".mdx"))
 }
 
-export function getBlogPosts() {
+export function getBlogPosts(): {
+  slug: string
+  metadata: BlogMetadata
+  content: string
+}[] {
   return getBlogSlugs().map((slug) => {
     const realSlug = slug.replace(/\.mdx$/, "")
     const filePath = path.join(BLOG_PATH, slug)
@@ -19,7 +32,7 @@ export function getBlogPosts() {
 
     return {
       slug: realSlug,
-      metadata: data,
+      metadata: data as BlogMetadata, // 👈 cast to typed metadata
       content,
     }
   })
