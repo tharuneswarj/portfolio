@@ -57,7 +57,7 @@ gray-matter
 Vercel
  — hosting & analytics
 
- ### 📬 Contact
+### 📬 Contact
 
 🌐 Portfolio: tharuneswarj.vercel.app
 
