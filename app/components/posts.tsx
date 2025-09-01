@@ -1,58 +1,38 @@
-import Link from "next/link"
-import { formatDate, getBlogPosts } from "app/blog/utils"
+import fs from "fs"
+import path from "path"
+import matter from "gray-matter"
 
-export function BlogPosts() {
-  let allBlogs = getBlogPosts()
+// ✅ Strong type for frontmatter
+export type BlogMetadata = {
+  title: string
+  publishedAt: string
+  summary: string
+  image?: string
+  tags?: string[]   // 👈 added here
+}
 
-  return (
-    <div className="space-y-6">
-      {allBlogs
-        .sort((a, b) => {
-          if (
-            new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)
-          ) {
-            return -1
-          }
-          return 1
-        })
-        .map((post) => (
-          <Link
-            key={post.slug}
-            href={`/blog/${post.slug}`}
-            className="group block"
-          >
-            {/* Date */}
-            <p className="text-sm text-neutral-500 dark:text-neutral-400">
-              {formatDate(post.metadata.publishedAt, false)}
-            </p>
+const BLOG_PATH = path.join(process.cwd(), "content/blog")
 
-            {/* Title */}
-            <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-              {post.metadata.title}
-            </h3>
+export function getBlogSlugs() {
+  return fs.readdirSync(BLOG_PATH).filter((file) => file.endsWith(".mdx"))
+}
 
-            {/* Summary */}
-            {post.metadata.summary && (
-              <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-400 line-clamp-2">
-                {post.metadata.summary}
-              </p>
-            )}
+export function getBlogPosts(): {
+  slug: string
+  metadata: BlogMetadata
+  content: string
+}[] {
+  return getBlogSlugs().map((slug) => {
+    const realSlug = slug.replace(/\.mdx$/, "")
+    const filePath = path.join(BLOG_PATH, slug)
+    const fileContent = fs.readFileSync(filePath, "utf-8")
 
-            {/* Tags */}
-            {post.metadata.tags && (
-              <div className="flex flex-wrap gap-2 mt-2">
-                {post.metadata.tags.map((tag: string) => (
-                  <span
-                    key={tag}
-                    className="text-xs px-2 py-0.5 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            )}
-          </Link>
-        ))}
-    </div>
-  )
+    const { data, content } = matter(fileContent)
+
+    return {
+      slug: realSlug,
+      metadata: data as BlogMetadata, // 👈 cast to typed metadata
+      content,
+    }
+  })
 }

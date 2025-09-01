@@ -9,7 +9,7 @@ export type BlogMetadata = {
   publishedAt: string
   summary: string
   image?: string
-  tags?: string[]   // 👈 new, optional
+  tags?: string[]   // 👈 added
 }
 
 const BLOG_PATH = path.join(process.cwd(), "content/blog")
@@ -32,7 +32,7 @@ export function getBlogPosts(): {
 
     return {
       slug: realSlug,
-      metadata: data as BlogMetadata, // 👈 cast to typed metadata
+      metadata: data as BlogMetadata, // ✅ cast as typed metadata
       content,
     }
   })
