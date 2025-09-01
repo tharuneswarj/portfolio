@@ -4,23 +4,25 @@ import { formatDate, getBlogPosts } from "../utils"
 import { baseUrl } from "app/sitemap"
 import type { Metadata } from "next"
 
-type Props = { params: { slug: string } }
-
 // ✅ Generate static paths for all blog posts
-export async function generateStaticParams() {
-  let posts = getBlogPosts()
+export async function generateStaticParams(): Promise<{ slug: string }[]> {
+  const posts = getBlogPosts()
   return posts.map((post) => ({ slug: post.slug }))
 }
 
 // ✅ Dynamic metadata for SEO / social previews
-export function generateMetadata({ params }: Props): Metadata | undefined {
-  let post = getBlogPosts().find((post) => post.slug === params.slug)
+export function generateMetadata({
+  params,
+}: {
+  params: { slug: string }
+}): Metadata | undefined {
+  const post = getBlogPosts().find((post) => post.slug === params.slug)
   if (!post) return
 
-  let { title, publishedAt: publishedTime, summary: description, image } =
+  const { title, publishedAt: publishedTime, summary: description, image } =
     post.metadata
 
-  let ogImage = image
+  const ogImage = image
     ? `${baseUrl}${image}`
     : `${baseUrl}/og?title=${encodeURIComponent(title)}`
 
@@ -45,10 +47,14 @@ export function generateMetadata({ params }: Props): Metadata | undefined {
 }
 
 // ✅ Blog detail page
-export default function BlogPage({ params }: Props) {
-  let post = getBlogPosts().find((post) => post.slug === params.slug)
+export default function BlogPage({
+  params,
+}: {
+  params: { slug: string }
+}) {
+  const post = getBlogPosts().find((post) => post.slug === params.slug)
 
-  if (!post) notFound()
+  if (!post) return notFound()
 
   return (
     <section className="max-w-3xl mx-auto px-6 py-12">
