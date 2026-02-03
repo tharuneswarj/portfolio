@@ -49,19 +49,19 @@ export default function Page() {
         <div className="flex flex-wrap justify-center gap-4">
           <Link
             href="/projects"
-            className="rounded-full border border-neutral-600 bg-neutral-900 px-6 py-3 text-sm font-bold text-[#6b1d1d] transition hover:-translate-y-0.5 hover:border-neutral-500 hover:bg-neutral-800"
+            className="rounded-full border border-neutral-600 bg-neutral-900 px-6 py-3 text-sm font-bold text-[#b11f2d] transition hover:-translate-y-0.5 hover:border-neutral-500 hover:bg-neutral-800"
           >
             Explore projects
           </Link>
           <Link
             href="/blog"
-            className="rounded-full border border-neutral-600 bg-neutral-900 px-6 py-3 text-sm font-bold text-[#6b1d1d] transition hover:-translate-y-0.5 hover:border-neutral-500 hover:bg-neutral-800"
+            className="rounded-full border border-neutral-600 bg-neutral-900 px-6 py-3 text-sm font-bold text-[#b11f2d] transition hover:-translate-y-0.5 hover:border-neutral-500 hover:bg-neutral-800"
           >
             Read my blog to see what I'm building
           </Link>
           <Link
             href="/contact"
-            className="rounded-full border border-neutral-600 bg-neutral-900 px-6 py-3 text-sm font-bold text-[#6b1d1d] transition hover:-translate-y-0.5 hover:border-neutral-500 hover:bg-neutral-800"
+            className="rounded-full border border-neutral-600 bg-neutral-900 px-6 py-3 text-sm font-bold text-[#b11f2d] transition hover:-translate-y-0.5 hover:border-neutral-500 hover:bg-neutral-800"
           >
             Start a collaboration
           </Link>
@@ -96,7 +96,7 @@ export default function Page() {
           </div>
           <Link
             href="/projects"
-            className="text-sm font-semibold text-neutral-700 transition hover:text-[#6b1d1d] dark:text-neutral-300 dark:hover:text-[#c46868]"
+            className="text-sm font-semibold text-neutral-700 transition hover:text-[#b11f2d] dark:text-neutral-300 dark:hover:text-[#e07b87]"
           >
             View all projects →
           </Link>
@@ -124,7 +124,7 @@ export default function Page() {
                 <p className="text-sm text-neutral-600 dark:text-neutral-400">
                   {project.metadata.description}
                 </p>
-                <span className="mt-auto text-sm font-semibold text-neutral-700 transition group-hover:text-[#6b1d1d] dark:text-neutral-300 dark:group-hover:text-[#c46868]">
+                <span className="mt-auto text-sm font-semibold text-neutral-700 transition group-hover:text-[#b11f2d] dark:text-neutral-300 dark:group-hover:text-[#e07b87]">
                   Read the case study →
                 </span>
               </div>
