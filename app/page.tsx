@@ -49,19 +49,19 @@ export default function Page() {
         <div className="flex flex-wrap justify-center gap-4">
           <Link
             href="/projects"
-            className="rounded-full bg-black px-6 py-3 text-sm font-semibold text-[#6b1d1d] transition hover:-translate-y-0.5 hover:bg-neutral-900"
+            className="rounded-full border border-neutral-600 bg-neutral-900 px-6 py-3 text-sm font-bold text-[#6b1d1d] transition hover:-translate-y-0.5 hover:border-neutral-500 hover:bg-neutral-800"
           >
             Explore projects
           </Link>
           <Link
             href="/blog"
-            className="rounded-full bg-black px-6 py-3 text-sm font-semibold text-[#6b1d1d] transition hover:-translate-y-0.5 hover:bg-neutral-900"
+            className="rounded-full border border-neutral-600 bg-neutral-900 px-6 py-3 text-sm font-bold text-[#6b1d1d] transition hover:-translate-y-0.5 hover:border-neutral-500 hover:bg-neutral-800"
           >
             Read my blog to see what I'm building
           </Link>
           <Link
             href="/contact"
-            className="rounded-full bg-black px-6 py-3 text-sm font-semibold text-[#6b1d1d] transition hover:-translate-y-0.5 hover:bg-neutral-900"
+            className="rounded-full border border-neutral-600 bg-neutral-900 px-6 py-3 text-sm font-bold text-[#6b1d1d] transition hover:-translate-y-0.5 hover:border-neutral-500 hover:bg-neutral-800"
           >
             Start a collaboration
           </Link>
