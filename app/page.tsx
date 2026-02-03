@@ -44,7 +44,7 @@ export default function Page() {
         </h1>
         <p className="mx-auto max-w-3xl text-lg text-neutral-600 dark:text-neutral-300 sm:text-xl">
           Hi, I’m Tharun Eswar. I work at the intersection of architecture, computation, and
-          digital fabrication—translating research into prototypes, installations, and tools.
+          digital fabrication - translating research into prototypes, installations, and tools.
         </p>
         <div className="flex flex-wrap justify-center gap-4">
           <Link
