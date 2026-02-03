@@ -57,7 +57,7 @@ export default function Page() {
             href="/blog"
             className="rounded-full bg-black px-6 py-3 text-sm font-semibold text-[#6b1d1d] transition hover:-translate-y-0.5 hover:bg-neutral-900"
           >
-            Read my blog to see what I'am building
+            Read my blog to see what I'm building
           </Link>
           <Link
             href="/contact"
