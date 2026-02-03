@@ -37,14 +37,14 @@ export default function Page() {
     <main className="flex flex-col gap-20 px-6 pb-20 pt-16">
       <section className="mx-auto flex w-full max-w-5xl flex-col gap-10 text-center">
         <div className="inline-flex items-center justify-center gap-2 rounded-full border border-neutral-200 px-4 py-1 text-sm font-medium text-neutral-600 shadow-sm dark:border-neutral-800 dark:text-neutral-300">
-          Architect · Computational Designer · Fabricator
+          Architect · Computational Designer · Maker
         </div>
         <h1 className="text-4xl font-extrabold tracking-tight text-neutral-900 dark:text-neutral-50 sm:text-5xl md:text-6xl">
           I build spatial ideas into tangible systems.
         </h1>
         <p className="mx-auto max-w-3xl text-lg text-neutral-600 dark:text-neutral-300 sm:text-xl">
           Hi, I’m Tharun Eswar. I work at the intersection of architecture, computation, and
-          digital fabrication - translating research into prototypes, installations, and tools.
+          digital fabrication - translating research into meaningfull spaces and products.
         </p>
         <div className="flex flex-wrap justify-center gap-4">
           <Link
