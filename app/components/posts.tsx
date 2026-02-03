@@ -1,6 +1,7 @@
 import fs from "fs"
 import path from "path"
 import matter from "gray-matter"
+import { slugify } from "../utils/slugify"
 
 // ✅ Strong type for frontmatter
 export type BlogMetadata = {
@@ -28,9 +29,10 @@ export function getBlogPosts(): {
     const fileContent = fs.readFileSync(filePath, "utf-8")
 
     const { data, content } = matter(fileContent)
+    const slugSource = (data as BlogMetadata).title || realSlug
 
     return {
-      slug: realSlug,
+      slug: slugify(slugSource),
       metadata: data as BlogMetadata, // 👈 cast to typed metadata
       content,
     }

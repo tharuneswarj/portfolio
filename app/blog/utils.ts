@@ -1,5 +1,6 @@
 import fs from 'fs'
 import path from 'path'
+import { slugify } from '../utils/slugify'
 
 type Metadata = {
   title: string
@@ -39,7 +40,9 @@ function getMDXData(dir) {
   let mdxFiles = getMDXFiles(dir)
   return mdxFiles.map((file) => {
     let { metadata, content } = readMDXFile(path.join(dir, file))
-    let slug = path.basename(file, path.extname(file))
+    let fallbackSlug = path.basename(file, path.extname(file))
+    let slugSource = metadata.title || fallbackSlug
+    let slug = slugify(slugSource)
 
     return {
       metadata,
