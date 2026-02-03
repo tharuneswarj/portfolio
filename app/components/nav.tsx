@@ -31,7 +31,7 @@ export function Navbar() {
               className={`transition-colors ${
                 isActive
                   ? "text-[#b11f2d] dark:text-[#e07b87] font-medium"
-                  : "text-neutral-600 hover:text-[#b11f2d] dark:text-neutral-400 dark:hover:text-[#e07b87]"
+                  : "text-neutral-600 hover:text-[#b11f2d] dark:text-neutral-400 dark:hover:text-[#b11f2d]"
               }`}
             >
               {name}
