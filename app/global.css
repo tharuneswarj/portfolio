@@ -2,14 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-::selection {
-  background-color: #f97316; /* your highlight color */
-  color: white;
+:root {
+  --accent: #6b1d1d;
+  --accent-contrast: #fefefe;
 }
 
 ::selection {
-  background-color: #47a3f3;
-  color: #fefefe;
+  background-color: var(--accent);
+  color: var(--accent-contrast);
 }
 
 :root {
@@ -55,7 +55,9 @@ html {
 }
 
 .prose a {
-  @apply underline transition-all decoration-neutral-400 dark:decoration-neutral-600 underline-offset-2 decoration-[0.1em];
+  @apply underline transition-all underline-offset-2 decoration-[0.1em];
+  color: var(--accent);
+  text-decoration-color: rgba(107, 29, 29, 0.6);
 }
 
 .prose .anchor:after {
