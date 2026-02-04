@@ -19,6 +19,7 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             className="transition-colors hover:text-black dark:hover:text-white"
+            aria-label="Email"
           >
             <Mail className="h-5 w-5" />
           </a>
@@ -27,6 +28,7 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             className="transition-colors hover:text-black dark:hover:text-white"
+            aria-label="GitHub"
           >
             <Github className="h-5 w-5" />
           </a>
@@ -35,6 +37,7 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             className="transition-colors hover:text-black dark:hover:text-white"
+            aria-label="LinkedIn"
           >
             <Linkedin className="h-5 w-5" />
           </a>
@@ -43,6 +46,7 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             className="transition-colors hover:text-black dark:hover:text-white"
+            aria-label="Instagram"
           >
             <Instagram className="h-5 w-5" />
           </a>
