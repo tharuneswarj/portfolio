@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --accent: #6b1d1d;
+  --accent: #b11f2d;
   --accent-contrast: #fefefe;
 }
 
@@ -57,7 +57,7 @@ html {
 .prose a {
   @apply underline transition-all underline-offset-2 decoration-[0.1em];
   color: var(--accent);
-  text-decoration-color: rgba(107, 29, 29, 0.6);
+  text-decoration-color: rgba(177, 31, 45, 0.6);
 }
 
 .prose .anchor:after {
