@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
     default: 'Tharun Eswar | Portfolio',
-    template: '%s | Next.js Portfolio Starter',
+    template: '%s | Tharun Eswar',
   },
   description: 'A Peak into my Curious Brain. I write about Architecture , Tech and Life.',
   openGraph: {
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   },
 }
 
-const cx = (...classes) => classes.filter(Boolean).join(' ')
+const cx = (...classes: (string | undefined | null | false)[]) => classes.filter(Boolean).join(' ')
 
 export default function RootLayout({
   children,

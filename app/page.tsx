@@ -2,13 +2,6 @@ import Image from "next/image"
 import Link from "next/link"
 import { getAllProjects } from "./projects/utils"
 
-function formatHighlightCopy(
-  title: string,
-  description: string
-) {
-  return { title, description }
-}
-
 export default function Page() {
   const projects = getAllProjects()
     .sort((a, b) => {
@@ -19,18 +12,18 @@ export default function Page() {
     .slice(0, 3)
 
   const highlights = [
-    formatHighlightCopy(
-      "Architecture with a computational core",
-      "I design spatial systems that blend geometry, material behavior, and digital workflows."
-    ),
-    formatHighlightCopy(
-      "Digital fabrication experiments",
-      "From clay extrusion to CNC assemblies, I prototype how tools can shape new craft."
-    ),
-    formatHighlightCopy(
-      "Research-driven storytelling",
-      "Every project is documented with process notes, visuals, and learnings you can reuse."
-    ),
+    {
+      title: "Architecture with a computational core",
+      description: "I design spatial systems that blend geometry, material behavior, and digital workflows."
+    },
+    {
+      title: "Digital fabrication experiments",
+      description: "From clay extrusion to CNC assemblies, I prototype how tools can shape new craft."
+    },
+    {
+      title: "Research-driven storytelling",
+      description: "Every project is documented with process notes, visuals, and learnings you can reuse."
+    },
   ]
 
   return (
