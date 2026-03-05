@@ -22,10 +22,10 @@ export default function BlogPage() {
 
   return (
     <section className="max-w-5xl mx-auto px-6 pt-28 pb-20">
-      <h1 className="text-4xl md:text-5xl font-bold mb-4 text-center text-white">
+      <h1 className="text-4xl md:text-5xl font-bold mb-4 text-center text-neutral-900 dark:text-white">
         Blog
       </h1>
-      <p className="text-base text-neutral-400 mb-12 text-center max-w-lg mx-auto">
+      <p className="text-base text-neutral-600 dark:text-neutral-400 mb-12 text-center max-w-lg mx-auto">
         Thoughts on architecture, computation, and the craft of making.
       </p>
       <BlogGrid posts={posts} />

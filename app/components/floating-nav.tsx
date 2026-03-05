@@ -81,7 +81,7 @@ export function FloatingNav() {
                     className={`relative z-10 ${
                       isActive
                         ? 'text-accent font-medium'
-                        : 'text-neutral-400 hover:text-white dark:hover:text-white'
+                        : 'text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
                     }`}
                   >
                     {name}
@@ -157,7 +157,7 @@ export function FloatingNav() {
                   className={`px-3 py-2 rounded-lg text-sm transition-colors ${
                     isActive
                       ? 'text-accent font-medium bg-accent/10'
-                      : 'text-neutral-400 hover:text-white'
+                      : 'text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
                   }`}
                 >
                   {name}

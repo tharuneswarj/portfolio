@@ -43,7 +43,7 @@ export function ContactClient() {
         {/* Left: content */}
         <div>
           <motion.h1
-            className="text-4xl md:text-5xl font-bold text-white mb-6"
+            className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -52,7 +52,7 @@ export function ContactClient() {
           </motion.h1>
 
           <motion.p
-            className="text-neutral-400 mb-10 leading-relaxed"
+            className="text-neutral-600 dark:text-neutral-400 mb-10 leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
@@ -77,7 +77,7 @@ export function ContactClient() {
                   <contact.icon className="w-5 h-5 text-accent" />
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-white">
+                  <p className="text-sm font-medium text-neutral-900 dark:text-white">
                     {contact.name}
                   </p>
                   <p className="text-xs text-neutral-500">

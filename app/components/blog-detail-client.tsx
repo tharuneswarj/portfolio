@@ -53,7 +53,7 @@ export function BlogDetailClient({
 
           {/* Title */}
           <motion.h1
-            className="text-3xl md:text-4xl font-bold tracking-tight text-white mb-4"
+            className="text-3xl md:text-4xl font-bold tracking-tight text-neutral-900 dark:text-white mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}

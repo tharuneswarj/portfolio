@@ -48,7 +48,7 @@ export default function RootLayout({
       className={`dark ${GeistSans.variable} ${GeistMono.variable}`}
       suppressHydrationWarning
     >
-      <body className="antialiased min-h-screen text-neutral-200 transition-colors duration-300">
+      <body className="antialiased min-h-screen text-neutral-800 dark:text-neutral-200 transition-colors duration-300">
         <ClientProviders>
           <main className="flex-auto min-w-0">{children}</main>
         </ClientProviders>

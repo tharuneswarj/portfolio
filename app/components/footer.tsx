@@ -23,7 +23,7 @@ export default function Footer() {
         <div className="grid md:grid-cols-3 gap-8">
           {/* Brand */}
           <div>
-            <span className="font-mono text-lg font-semibold text-white">
+            <span className="font-mono text-lg font-semibold text-neutral-900 dark:text-white">
               tha.run
             </span>
             <p className="text-sm text-neutral-500 mt-2">
@@ -37,7 +37,7 @@ export default function Footer() {
               <Link
                 key={path}
                 href={path}
-                className="text-sm text-neutral-400 hover:text-accent transition-colors"
+                className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-accent transition-colors"
               >
                 {path === '/'
                   ? 'Home'
@@ -54,7 +54,7 @@ export default function Footer() {
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-lg text-neutral-500 hover:text-accent hover:bg-accent/10 transition-all"
+                className="p-2 rounded-lg text-neutral-500 dark:text-neutral-500 hover:text-accent hover:bg-accent/10 transition-all"
                 aria-label={label}
               >
                 <Icon className="w-5 h-5" />
@@ -63,7 +63,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 pt-6 border-t border-surface-border text-center text-xs text-neutral-600">
+        <div className="mt-10 pt-6 border-t border-surface-border text-center text-xs text-neutral-400 dark:text-neutral-600">
           &copy; {new Date().getFullYear()} Tharun Eswar. All rights reserved.
         </div>
       </div>

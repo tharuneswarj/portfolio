@@ -13,10 +13,10 @@ export default function ProjectsPage() {
   return (
     <section className="max-w-5xl mx-auto pt-28 pb-20">
       <div className="px-6 mb-12">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4 text-center text-white">
+        <h1 className="text-4xl md:text-5xl font-bold mb-4 text-center text-neutral-900 dark:text-white">
           Projects
         </h1>
-        <p className="text-base text-neutral-400 text-center max-w-lg mx-auto">
+        <p className="text-base text-neutral-600 dark:text-neutral-400 text-center max-w-lg mx-auto">
           Architecture, computational design, and digital fabrication.
         </p>
       </div>

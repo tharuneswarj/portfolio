@@ -34,7 +34,7 @@ export function BlogGrid({ posts }: { posts: BlogPost[] }) {
             className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
               !activeTag
                 ? 'bg-accent text-white'
-                : 'bg-surface-raised text-neutral-400 hover:text-white border border-surface-border'
+                : 'bg-surface-raised text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white border border-surface-border'
             }`}
           >
             All
@@ -46,7 +46,7 @@ export function BlogGrid({ posts }: { posts: BlogPost[] }) {
               className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
                 activeTag === tag
                   ? 'bg-accent text-white'
-                  : 'bg-surface-raised text-neutral-400 hover:text-white border border-surface-border'
+                  : 'bg-surface-raised text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white border border-surface-border'
               }`}
             >
               {tag}
@@ -81,11 +81,11 @@ export function BlogGrid({ posts }: { posts: BlogPost[] }) {
                     </div>
                   )}
                   <div className="p-5">
-                    <h2 className="text-lg font-semibold text-white mb-2 group-hover:text-accent transition-colors">
+                    <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2 group-hover:text-accent transition-colors">
                       {post.metadata.title}
                     </h2>
                     {post.metadata.summary && (
-                      <p className="text-sm text-neutral-400 mb-3 line-clamp-3">
+                      <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3 line-clamp-3">
                         {post.metadata.summary}
                       </p>
                     )}

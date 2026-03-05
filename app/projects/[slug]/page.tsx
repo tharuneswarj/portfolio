@@ -63,7 +63,7 @@ export default function ProjectPage({ params }: any) {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/50 to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 p-8 max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white">
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-neutral-900 dark:text-white">
               {project.metadata.title}
             </h1>
           </div>
@@ -72,7 +72,7 @@ export default function ProjectPage({ params }: any) {
 
       {!project.metadata.image && (
         <div className="max-w-4xl mx-auto px-6 pt-8">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-8">
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-neutral-900 dark:text-white mb-8">
             {project.metadata.title}
           </h1>
         </div>
@@ -89,7 +89,7 @@ export default function ProjectPage({ params }: any) {
           {prev ? (
             <Link
               href={`/projects/${prev.slug}`}
-              className="text-sm text-neutral-400 hover:text-accent transition-colors"
+              className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-accent transition-colors"
             >
               ← {prev.metadata.title}
             </Link>
@@ -99,7 +99,7 @@ export default function ProjectPage({ params }: any) {
           {next ? (
             <Link
               href={`/projects/${next.slug}`}
-              className="text-sm text-neutral-400 hover:text-accent transition-colors"
+              className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-accent transition-colors"
             >
               {next.metadata.title} →
             </Link>

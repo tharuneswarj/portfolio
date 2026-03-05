@@ -51,7 +51,7 @@ export function HomeClient({ projects, posts }: HomeClientProps) {
           style={{ opacity: heroOpacity, scale: heroScale }}
         >
           <motion.h1
-            className="text-5xl sm:text-6xl md:text-8xl font-bold tracking-tight text-white mb-4"
+            className="text-5xl sm:text-6xl md:text-8xl font-bold tracking-tight text-neutral-900 dark:text-white mb-4"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -60,7 +60,7 @@ export function HomeClient({ projects, posts }: HomeClientProps) {
           </motion.h1>
 
           <motion.p
-            className="font-mono text-sm sm:text-base text-neutral-400 tracking-widest uppercase"
+            className="font-mono text-sm sm:text-base text-neutral-600 dark:text-neutral-400 tracking-widest uppercase"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
@@ -77,7 +77,7 @@ export function HomeClient({ projects, posts }: HomeClientProps) {
         <div className="max-w-4xl mx-auto text-center">
           <WordReveal
             text="I work where code meets craft — building spatial ideas into tangible systems, one layer at a time."
-            className="text-2xl sm:text-3xl md:text-4xl font-medium leading-relaxed text-white tracking-tight"
+            className="text-2xl sm:text-3xl md:text-4xl font-medium leading-relaxed text-neutral-900 dark:text-white tracking-tight"
           />
         </div>
       </section>
@@ -112,10 +112,10 @@ export function HomeClient({ projects, posts }: HomeClientProps) {
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                     </div>
-                    <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-accent transition-colors">
+                    <h3 className="text-2xl font-bold text-neutral-900 dark:text-white mb-3 group-hover:text-accent transition-colors">
                       {project.title}
                     </h3>
-                    <p className="text-sm text-neutral-400 mb-4 leading-relaxed">
+                    <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-4 leading-relaxed">
                       {project.description}
                     </p>
                     <span className="inline-flex items-center gap-1 text-sm text-accent font-medium group-hover:gap-2 transition-all">
@@ -144,7 +144,7 @@ export function HomeClient({ projects, posts }: HomeClientProps) {
               </motion.h2>
               <Link
                 href="/blog"
-                className="text-sm text-neutral-400 hover:text-accent transition-colors"
+                className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-accent transition-colors"
               >
                 All posts →
               </Link>
@@ -171,11 +171,11 @@ export function HomeClient({ projects, posts }: HomeClientProps) {
                         </div>
                       )}
                       <div className="p-5">
-                        <h3 className="text-base font-semibold text-white mb-2 group-hover:text-accent transition-colors">
+                        <h3 className="text-base font-semibold text-neutral-900 dark:text-white mb-2 group-hover:text-accent transition-colors">
                           {post.title}
                         </h3>
                         {post.summary && (
-                          <p className="text-sm text-neutral-400 line-clamp-2 mb-3">
+                          <p className="text-sm text-neutral-600 dark:text-neutral-400 line-clamp-2 mb-3">
                             {post.summary}
                           </p>
                         )}
@@ -200,10 +200,10 @@ export function HomeClient({ projects, posts }: HomeClientProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-neutral-900 dark:text-white mb-4">
             Let&apos;s build something together.
           </h2>
-          <p className="text-neutral-400 mb-8 max-w-xl mx-auto">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-8 max-w-xl mx-auto">
             Open to collaborations in architecture, computational design, and
             digital fabrication.
           </p>

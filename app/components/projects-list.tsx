@@ -26,16 +26,16 @@ export function ProjectsList({ projects }: { projects: Project[] }) {
             className="group relative flex items-center gap-8 py-10 px-6 border-b border-surface-border hover:bg-surface-raised/50 transition-all duration-300"
           >
             {/* Index */}
-            <span className="font-mono text-sm text-neutral-600 w-8">
+            <span className="font-mono text-sm text-neutral-400 dark:text-neutral-600 w-8">
               {String(i + 1).padStart(2, '0')}
             </span>
 
             {/* Text */}
             <div className="flex-1 min-w-0">
-              <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white group-hover:text-accent transition-colors duration-300">
+              <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-neutral-900 dark:text-white group-hover:text-accent transition-colors duration-300">
                 {project.metadata.title}
               </h2>
-              <p className="mt-2 text-sm text-neutral-400 max-w-xl">
+              <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400 max-w-xl">
                 {project.metadata.description}
               </p>
             </div>
@@ -51,7 +51,7 @@ export function ProjectsList({ projects }: { projects: Project[] }) {
             </div>
 
             {/* Arrow */}
-            <span className="text-neutral-600 group-hover:text-accent transition-colors text-xl">
+            <span className="text-neutral-400 dark:text-neutral-600 group-hover:text-accent transition-colors text-xl">
               →
             </span>
           </motion.div>
