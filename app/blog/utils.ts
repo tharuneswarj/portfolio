@@ -1,97 +1,61 @@
 import fs from 'fs'
 import path from 'path'
+import matter from 'gray-matter'
 import { slugify } from '../utils/slugify'
 
-type Metadata = {
+export type BlogMetadata = {
   title: string
   publishedAt: string
   summary: string
   image?: string
+  tags?: string[]
 }
 
-function parseFrontmatter(fileContent: string) {
-  let frontmatterRegex = /---\s*([\s\S]*?)\s*---/
-  let match = frontmatterRegex.exec(fileContent)
-  let frontMatterBlock = match![1]
-  let content = fileContent.replace(frontmatterRegex, '').trim()
-  let frontMatterLines = frontMatterBlock.trim().split('\n')
-  let metadata: Partial<Metadata> = {}
+const BLOG_PATH = path.join(process.cwd(), 'content/blog')
 
-  frontMatterLines.forEach((line) => {
-    let [key, ...valueArr] = line.split(': ')
-    let value = valueArr.join(': ').trim()
-    value = value.replace(/^['"](.*)['"]$/, '$1') // Remove quotes
-    metadata[key.trim() as keyof Metadata] = value
-  })
-
-  return { metadata: metadata as Metadata, content }
-}
-
-function getMDXFiles(dir) {
-  return fs.readdirSync(dir).filter((file) => path.extname(file) === '.mdx')
-}
-
-function readMDXFile(filePath) {
-  let rawContent = fs.readFileSync(filePath, 'utf-8')
-  return parseFrontmatter(rawContent)
-}
-
-function getMDXData(dir) {
-  let mdxFiles = getMDXFiles(dir)
-  return mdxFiles.map((file) => {
-    let { metadata, content } = readMDXFile(path.join(dir, file))
-    let fallbackSlug = path.basename(file, path.extname(file))
-    let slugSource = metadata.title || fallbackSlug
-    let slug = slugify(slugSource)
-
+export function getBlogPosts(): {
+  slug: string
+  metadata: BlogMetadata
+  content: string
+}[] {
+  const files = fs.readdirSync(BLOG_PATH).filter((f) => f.endsWith('.mdx'))
+  return files.map((file) => {
+    const filePath = path.join(BLOG_PATH, file)
+    const raw = fs.readFileSync(filePath, 'utf-8')
+    const { data, content } = matter(raw)
+    const fallback = file.replace(/\.mdx$/, '')
     return {
-      metadata,
-      slug,
+      slug: slugify(data.title || fallback),
+      metadata: data as BlogMetadata,
       content,
     }
   })
 }
 
-export function getBlogPosts() {
-  return getMDXData(path.join(process.cwd(), 'content', 'blog'))
+export function readingTime(content: string): string {
+  const words = content.trim().split(/\s+/).length
+  const mins = Math.max(1, Math.round(words / 230))
+  return `${mins} min read`
 }
 
 export function formatDate(date: string, includeRelative = false) {
-  let currentDate = new Date()
-  if (!date || typeof date !== "string") {
-    return "Unknown date"
-  }
-  
-  if (!date.includes("T")) {
-    date = `${date}T00:00:00`
-  }
-  let targetDate = new Date(date)
-
-  let yearsAgo = currentDate.getFullYear() - targetDate.getFullYear()
-  let monthsAgo = currentDate.getMonth() - targetDate.getMonth()
-  let daysAgo = currentDate.getDate() - targetDate.getDate()
-
-  let formattedDate = ''
-
-  if (yearsAgo > 0) {
-    formattedDate = `${yearsAgo}y ago`
-  } else if (monthsAgo > 0) {
-    formattedDate = `${monthsAgo}mo ago`
-  } else if (daysAgo > 0) {
-    formattedDate = `${daysAgo}d ago`
-  } else {
-    formattedDate = 'Today'
-  }
-
-  let fullDate = targetDate.toLocaleString('en-us', {
+  if (!date || typeof date !== 'string') return 'Unknown date'
+  const target = new Date(date.includes('T') ? date : `${date}T00:00:00`)
+  const full = target.toLocaleString('en-us', {
     month: 'long',
     day: 'numeric',
     year: 'numeric',
   })
+  if (!includeRelative) return full
 
-  if (!includeRelative) {
-    return fullDate
-  }
+  const now = new Date()
+  const diff = Math.floor(
+    (now.getTime() - target.getTime()) / (1000 * 60 * 60 * 24)
+  )
+  let relative = 'Today'
+  if (diff > 365) relative = `${Math.floor(diff / 365)}y ago`
+  else if (diff > 30) relative = `${Math.floor(diff / 30)}mo ago`
+  else if (diff > 0) relative = `${diff}d ago`
 
-  return `${fullDate} (${formattedDate})`
+  return `${full} (${relative})`
 }

@@ -1,32 +1,42 @@
-import fs from "fs"
-import path from "path"
-import matter from "gray-matter"
-import { slugify } from "../utils/slugify"
+import fs from 'fs'
+import path from 'path'
+import matter from 'gray-matter'
+import { slugify } from '../utils/slugify'
 
-const PROJECTS_PATH = path.join(process.cwd(), "content/projects")
+export type ProjectMetadata = {
+  title: string
+  description: string
+  image: string
+  publishedAt?: string
+}
+
+const PROJECTS_PATH = path.join(process.cwd(), 'content/projects')
 
 export function getProjectSlugs() {
-  return fs.readdirSync(PROJECTS_PATH).filter((file) => file.endsWith(".mdx"))
+  return fs.readdirSync(PROJECTS_PATH).filter((file) => file.endsWith('.mdx'))
 }
 
 export function getProjectBySlug(slug: string) {
-  const projects = getAllProjects()
-  return projects.find((project) => project.slug === slug)
+  return getAllProjects().find((project) => project.slug === slug)
 }
 
-export function getAllProjects() {
+export function getAllProjects(): {
+  slug: string
+  metadata: ProjectMetadata
+  content: string
+}[] {
   const slugs = getProjectSlugs()
-  return slugs.map((slug) => {
-    const realSlug = slug.replace(/\.mdx$/, "")
+  return slugs.map((file) => {
+    const realSlug = file.replace(/\.mdx$/, '')
     const filePath = path.join(PROJECTS_PATH, `${realSlug}.mdx`)
-    const fileContent = fs.readFileSync(filePath, "utf-8")
+    const fileContent = fs.readFileSync(filePath, 'utf-8')
 
     const { data, content } = matter(fileContent)
-    const slugSource = (data as { title?: string }).title || realSlug
+    const slugSource = (data as ProjectMetadata).title || realSlug
 
     return {
       slug: slugify(slugSource),
-      metadata: data,
+      metadata: data as ProjectMetadata,
       content,
     }
   })
