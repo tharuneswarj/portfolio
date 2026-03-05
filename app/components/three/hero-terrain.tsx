@@ -76,7 +76,7 @@ function fbm(x: number, y: number, z: number, octaves = 4): number {
 const SEGMENTS = 80
 const SIZE = 12
 
-export function HeroTerrain() {
+export function HeroTerrain({ isDark = true }: { isDark?: boolean }) {
   const meshRef = useRef<THREE.Mesh>(null)
   const mouseRef = useRef({ x: 0, y: 0 })
   const { viewport } = useThree()
@@ -110,14 +110,23 @@ export function HeroTerrain() {
 
       positions.setZ(i, height)
 
-      // Color: dark base → accent glow at peaks
+      // Color: base → accent maroon at peaks
       const t = Math.max(0, Math.min(1, (height + 1) / 2.5))
-      colors.setXYZ(
-        i,
-        0.04 + t * 0.69,  // R: 0.04 → 0.69 (accent red)
-        0.04 + t * 0.04,  // G: stays dark
-        0.06 + t * 0.12   // B: slight blue shift
-      )
+      if (isDark) {
+        colors.setXYZ(
+          i,
+          0.04 + t * 0.65,  // R: 0.04 → 0.69
+          0.04 + t * 0.04,  // G: stays dark
+          0.06 + t * 0.12   // B: slight shift
+        )
+      } else {
+        colors.setXYZ(
+          i,
+          0.75 + t * -0.06, // R: 0.75 → 0.69 (light pink-gray → maroon)
+          0.70 + t * -0.58,  // G: 0.70 → 0.12 (gray → dark)
+          0.70 + t * -0.52   // B: 0.70 → 0.18 (gray → dark)
+        )
+      }
     }
 
     positions.needsUpdate = true
@@ -128,13 +137,16 @@ export function HeroTerrain() {
   const colorAttr = useMemo(() => {
     const count = (SEGMENTS + 1) * (SEGMENTS + 1)
     const colors = new Float32Array(count * 3)
+    const baseR = isDark ? 0.04 : 0.75
+    const baseG = isDark ? 0.04 : 0.70
+    const baseB = isDark ? 0.06 : 0.70
     for (let i = 0; i < count; i++) {
-      colors[i * 3] = 0.04
-      colors[i * 3 + 1] = 0.04
-      colors[i * 3 + 2] = 0.06
+      colors[i * 3] = baseR
+      colors[i * 3 + 1] = baseG
+      colors[i * 3 + 2] = baseB
     }
     return new THREE.BufferAttribute(colors, 3)
-  }, [])
+  }, [isDark])
 
   return (
     <mesh
