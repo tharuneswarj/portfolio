@@ -122,9 +122,9 @@ export function HeroTerrain({ isDark = true }: { isDark?: boolean }) {
       } else {
         colors.setXYZ(
           i,
-          0.75 + t * -0.06, // R: 0.75 → 0.69 (light pink-gray → maroon)
-          0.70 + t * -0.58,  // G: 0.70 → 0.12 (gray → dark)
-          0.70 + t * -0.52   // B: 0.70 → 0.18 (gray → dark)
+          0.92 + t * -0.23, // R: 0.92 → 0.69 (near-white → maroon)
+          0.90 + t * -0.78,  // G: 0.90 → 0.12
+          0.90 + t * -0.72   // B: 0.90 → 0.18
         )
       }
     }
@@ -137,9 +137,9 @@ export function HeroTerrain({ isDark = true }: { isDark?: boolean }) {
   const colorAttr = useMemo(() => {
     const count = (SEGMENTS + 1) * (SEGMENTS + 1)
     const colors = new Float32Array(count * 3)
-    const baseR = isDark ? 0.04 : 0.75
-    const baseG = isDark ? 0.04 : 0.70
-    const baseB = isDark ? 0.06 : 0.70
+    const baseR = isDark ? 0.04 : 0.92
+    const baseG = isDark ? 0.04 : 0.90
+    const baseB = isDark ? 0.06 : 0.90
     for (let i = 0; i < count; i++) {
       colors[i * 3] = baseR
       colors[i * 3 + 1] = baseG
